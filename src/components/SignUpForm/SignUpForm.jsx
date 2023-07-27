@@ -1,17 +1,19 @@
 import {
-    Link, // replace this Link with Link in react-router-dom
     Form,
     Stack,
     TextInput,
     Button
 } from '@carbon/react';
 import { ArrowRight, Login } from '@carbon/icons-react';
+import { Link } from "react-router-dom";
 
 const SignUpForm = () => {
     return (
         <Form className="form">
             <Stack gap={4} className="signup-form--title-container">
-                <p className="form__label">Already have an account? <Link>Log in</Link></p>
+                <p className="form__label">Already have an account?&nbsp;
+                    <Link to={'/log-in'}>Log in</Link>
+                </p>
                 <h1 className='form__title cds--type-heading-04'>Sign up for an account</h1>
             </Stack>
             <Stack gap={7}>

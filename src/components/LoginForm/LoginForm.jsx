@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     Form,
     Stack,
@@ -5,8 +6,25 @@ import {
     Button
 } from '@carbon/react';
 import { ArrowRight, Login } from '@carbon/icons-react';
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
+
+    const [formData, setFormData] = useState({
+        email: '', password: '',
+    });
+
+    function handleInputChange(e) {
+        const {name, value} = e.target;
+        setFormData((prevData) => ({
+            ...prevData, [name]: value,
+        }));
+    }
+
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        console.log(formData);
+    }
 
     return (
         <Form className="form">
@@ -15,6 +33,7 @@ const LoginForm = () => {
             </div>
             <Stack gap={7}>
                 <TextInput
+                    name="email"
                     id="form--email"
                     invalidText="Invalid error message."
                     labelText="E-mail"
@@ -23,11 +42,13 @@ const LoginForm = () => {
                     onChange={handleInputChange}
                 />
                 <TextInput.PasswordInput
+                    name="password"
                     id="form--password"
                     invalidText="Invalid error message."
                     labelText="Password"
                     size="md"
                     required
+                    onChange={handleInputChange}
                 />
                 <Button
                     className='form--submit'
@@ -35,6 +56,7 @@ const LoginForm = () => {
                     tabIndex={0}
                     type="submit"
                     renderIcon={ArrowRight}
+                    onClick={handleFormSubmit}
                 >
                     Log in
                 </Button>
@@ -44,17 +66,15 @@ const LoginForm = () => {
                         className='form--submit'
                         kind="secondary"
                         tabIndex={0}
-                        type="submit"
                         renderIcon={Login}
                     >Google Sign-in</Button>
                 </div>
                 <div className="form--signup-container">
                     <p className="form--signup__label">Don't have an account?</p>
-                    <Button
+                    <Button as={Link} to={'/sign-up'}
                         className='form--submit'
                         kind="tertiary"
                         tabIndex={0}
-                        type="submit"
                         renderIcon={ArrowRight}
                     >Create an account</Button>
                 </div>
