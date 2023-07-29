@@ -7,7 +7,7 @@ import {
 import { ArrowRight, Login } from '@carbon/icons-react';
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { loginWithGoogle, signupWithEmailPassword } from "../../auth";
+import { loginWithGoogle, signupWithEmailPassword } from "../../../auth";
 
 const SignUpForm = () => {
     const [formData, setFormData] = useState({

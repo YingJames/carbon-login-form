@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
     Form,
     Stack,
@@ -6,13 +6,11 @@ import {
     Button
 } from '@carbon/react';
 import { ArrowRight, Login } from '@carbon/icons-react';
-import { Link, useNavigate } from "react-router-dom";
-import { auth, loginWithEmailPassword, loginWithGoogle } from "../../auth";
+import { Link } from "react-router-dom";
+import { loginWithEmailPassword, loginWithGoogle } from "../../../auth";
 import { useContext } from "react";
-import { CurrentUserContext } from "../../App";
-import { onAuthStateChanged } from "firebase/auth";
+import { CurrentUserContext } from "../../../App";
 const LoginForm = () => {
-    const navigate = useNavigate();
     const {
         user,
         setUser
@@ -40,18 +38,7 @@ const LoginForm = () => {
         }
     }
 
-    onAuthStateChanged(auth, user => {
-        setUser(user);
-    })
 
-    useEffect(() => {
-        // This useEffect hook will be triggered whenever the 'user' state is updated.
-        // Check if the user is truthy and then navigate to the '/dashboard'.
-        if (user) {
-            console.log(`The form was handled. This is the user: ${user.email}`);
-            navigate("/dashboard");
-        }
-    }, [user]);
 
     return (
         <Form className="form" onSubmit={handleFormSubmit}>

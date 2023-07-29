@@ -1,8 +1,9 @@
 @use '@carbon/react';
-@use './components/styles/form';
-@use './components/LoginForm/login-form';
-@use './components/SignUpForm/signup-form';
 @use '@carbon/type';
+@use './components/organisms/LoadingScreen/loading-screen';
+@use './components/styles/form';
+@use './components/organisms/LoginForm/login-form';
+@use './components/organisms/SignUpForm/signup-form';
 
 // Include type reset
 @include type.reset();
