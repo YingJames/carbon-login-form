@@ -1,0 +1,38 @@
+[debug] [2023-07-29T02:46:46.275Z] ----------------------------------------------------------------------
+[debug] [2023-07-29T02:46:46.276Z] Command:       /home/james/.nvm/versions/node/v20.5.0/bin/node /home/james/Documents/WebstormProjects/carbon-login-form/node_modules/.bin/firebase emulators:start --only auth
+[debug] [2023-07-29T02:46:46.276Z] CLI Version:   12.4.6
+[debug] [2023-07-29T02:46:46.276Z] Platform:      linux
+[debug] [2023-07-29T02:46:46.277Z] Node Version:  v20.5.0
+[debug] [2023-07-29T02:46:46.277Z] Time:          Fri Jul 28 2023 22:46:46 GMT-0400 (Eastern Daylight Time)
+[debug] [2023-07-29T02:46:46.277Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-07-29T02:46:46.344Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-07-29T02:46:46.344Z] > authorizing via signed-in user (jyab0617@gmail.com)
+[info] i  emulators: Starting emulators: auth {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth"}}
+[debug] [2023-07-29T02:46:46.348Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-07-29T02:46:46.348Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-07-29T02:46:46.348Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-07-29T02:46:46.353Z] [hub] writing locator at /tmp/hub-fir-auth-9289c.json
+[debug] [2023-07-29T02:46:50.559Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-07-29T02:46:50.559Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-07-29T02:46:50.559Z] Starting Emulator UI with command {"binary":"node","args":["/home/james/.cache/firebase/emulators/ui-v1.11.7/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/home/james/.cache/firebase/emulators/ui-v1.11.7/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-07-29T02:46:50.615Z] Web / API server started at 127.0.0.1:4000
+Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\nWeb / API server started at ::1:4000\n"}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI        │
+├────────────────┼────────────────┼────────────────────────────┤
+│ Authentication │ 127.0.0.1:9099 │ http://127.0.0.1:4000/auth │
+└────────────────┴────────────────┴────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 

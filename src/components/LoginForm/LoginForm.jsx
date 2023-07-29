@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Form,
     Stack,
@@ -6,9 +6,17 @@ import {
     Button
 } from '@carbon/react';
 import { ArrowRight, Login } from '@carbon/icons-react';
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { auth, loginWithEmailPassword, loginWithGoogle } from "../../auth";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../App";
+import { onAuthStateChanged } from "firebase/auth";
 const LoginForm = () => {
+    const navigate = useNavigate();
+    const {
+        user,
+        setUser
+    } = useContext(CurrentUserContext);
 
     const [formData, setFormData] = useState({
         email: '', password: '',
@@ -21,13 +29,32 @@ const LoginForm = () => {
         }));
     }
 
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
         e.preventDefault();
-        console.log(formData);
+
+        try {
+            const userCredential = await loginWithEmailPassword(formData);
+            setUser(userCredential.user);
+        } catch (error) {
+            console.error('Authentication failed: ', error);
+        }
     }
 
+    onAuthStateChanged(auth, user => {
+        setUser(user);
+    })
+
+    useEffect(() => {
+        // This useEffect hook will be triggered whenever the 'user' state is updated.
+        // Check if the user is truthy and then navigate to the '/dashboard'.
+        if (user) {
+            console.log(`The form was handled. This is the user: ${user.email}`);
+            navigate("/dashboard");
+        }
+    }, [user]);
+
     return (
-        <Form className="form">
+        <Form className="form" onSubmit={handleFormSubmit}>
             <div className="form--title-container">
                 <h1 className='form__title cds--type-heading-04'>Log in to AlgoSculpt</h1>
             </div>
@@ -56,7 +83,6 @@ const LoginForm = () => {
                     tabIndex={0}
                     type="submit"
                     renderIcon={ArrowRight}
-                    onClick={handleFormSubmit}
                 >
                     Log in
                 </Button>
@@ -67,15 +93,16 @@ const LoginForm = () => {
                         kind="secondary"
                         tabIndex={0}
                         renderIcon={Login}
+                        onClick={loginWithGoogle}
                     >Google Sign-in</Button>
                 </div>
                 <div className="form--signup-container">
                     <p className="form--signup__label">Don't have an account?</p>
                     <Button as={Link} to={'/sign-up'}
-                        className='form--submit'
-                        kind="tertiary"
-                        tabIndex={0}
-                        renderIcon={ArrowRight}
+                            className='form--submit'
+                            kind="tertiary"
+                            tabIndex={0}
+                            renderIcon={ArrowRight}
                     >Create an account</Button>
                 </div>
             </Stack>
