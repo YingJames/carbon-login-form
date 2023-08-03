@@ -11,7 +11,6 @@ const Dashboard = () => {
         setUser
     } = useContext(CurrentUserContext);
 
-    console.log(user);
     return (
         <>
 

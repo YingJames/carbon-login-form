@@ -9,7 +9,6 @@ import LoadingScreen from "./components/organisms/LoadingScreen";
 
 export const CurrentUserContext = createContext(null);
 
-
 function App() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -28,22 +27,6 @@ function App() {
         // Cleanup the listener when the component is unmounted
         return () => unsubscribe();
     }, [user, loading, navigate]);
-
-
-// auth.onAuthStateChanged(user => {
-//     if (user) {
-//         setUser(user);
-//     }
-// })
-//
-// useEffect(() => {
-//     // This useEffect hook will be triggered whenever the 'user' state is updated.
-//     // Check if the user is truthy and then navigate to the '/dashboard'.
-//     if (user) {
-//         console.log(`The form was handled. This is the user: ${user.email}`);
-//         navigate("/dashboard");
-//     }
-// }, [user]);
 
     const ProtectedRoute = ({children}) => {
         if (!user && loading) {
@@ -66,11 +49,9 @@ function App() {
                 <Route path={'/dashboard'} element={
                     <ProtectedRoute>
                         <DashboardPage />
-                        {/*<LoadingScreen/>*/}
                     </ProtectedRoute>
                 } />
 
-                {/*<Route path={'/dashboard'} element={<DashboardPage />} />*/}
                 <Route path={'/log-in'} element={<LoginPage />} />
                 <Route path={'/sign-up'} element={<SignupPage />} />
             </Routes>
