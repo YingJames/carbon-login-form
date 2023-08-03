@@ -10,6 +10,7 @@ import { ArrowRight, Login } from '@carbon/icons-react';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { loginWithGoogle, signupWithEmailPassword } from "../../../auth";
+import { handleSignUpError } from "../../../auth/auth-error-handling";
 import './_signup-form.scss';
 
 
@@ -18,6 +19,14 @@ const SignUpForm = () => {
     const [showSuccessNotif, setShowSuccessNotif] = useState(false);
     const [formData, setFormData] = useState({
         email: '', password: '', displayName: '',
+    });
+    const [inputInvalidState, setInputInvalidState] = useState({
+        displayName: false, email: false, password: false,
+    });
+    const [invalidMessage, setInvalidMessage] = useState({
+        displayName: '', 
+        email: 'Invalid e-mail address. Please try again.', 
+        password: 'Password must be at least 6 characters long. Please try again.',
     });
 
     const SuccessNotification = () => {
@@ -31,7 +40,7 @@ const SignUpForm = () => {
         }, [timeLeft]);
 
         return (
-            <div>
+            <div className='inline-notification'>
                 <InlineNotification
                     kind="success"
                     actions={<NotificationActionButton hideCloseButton>Action</NotificationActionButton>}
@@ -52,11 +61,17 @@ const SignUpForm = () => {
 
     async function handleFormSubmit(e) {
         e.preventDefault();
-        await signupWithEmailPassword(formData)
-        setShowSuccessNotif(true);
-        setTimeout(() => {
-            navigate('/dashboard');
-        }, 5000)
+        try {
+            await signupWithEmailPassword(formData)
+            setShowSuccessNotif(true);
+            setInputInvalidState(false);
+            setTimeout(() => {
+                navigate('/dashboard');
+            }, 5000)
+        } catch (error) {
+            handleSignUpError(error, setInputInvalidState, setInvalidMessage);
+        }
+
     }
 
     return (
@@ -86,17 +101,19 @@ const SignUpForm = () => {
                 <TextInput
                     name="email"
                     id="form--email"
-                    invalidText="Invalid error message."
+                    invalidText={invalidMessage.email}
                     labelText="E-mail"
                     size="md"
+                    invalid={inputInvalidState.email}
                     onChange={handleInputChange}
                 />
                 <TextInput.PasswordInput
                     name="password"
                     id="form--password"
-                    invalidText="Invalid error message."
+                    invalidText={invalidMessage.password}
                     labelText="Password"
                     size="md"
+                    invalid={inputInvalidState.password}
                     onChange={handleInputChange}
                 />
                 <Button

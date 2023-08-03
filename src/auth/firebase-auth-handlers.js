@@ -26,21 +26,11 @@ export const loginWithEmailPassword = (formData) => {
 export const signupWithEmailPassword = async (formData) => {
     const textFieldEmail = formData.email;
     const textFieldPassword = formData.password
-    try {
-        createUserWithEmailAndPassword(auth, textFieldEmail, textFieldPassword)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                updateProfile(user, {
-                    displayName: formData.displayName
-                })
-            })
-            .catch(error => {
-                console.log(error)
-            })
-
-    } catch (error) {
-        console.log(error);
-    }
+    const userCredential = await createUserWithEmailAndPassword(auth, textFieldEmail, textFieldPassword)
+    const user = userCredential.user;
+    updateProfile(user, {
+        displayName: formData.displayName
+    })
 }
 
 export const loginWithGoogle = async () => {

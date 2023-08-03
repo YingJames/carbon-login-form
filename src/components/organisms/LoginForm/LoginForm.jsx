@@ -3,13 +3,17 @@ import {
     Form,
     Stack,
     TextInput,
-    Button
+    Button, 
+    InlineNotification, 
+    NotificationActionButton
 } from '@carbon/react';
 import { ArrowRight, Login } from '@carbon/icons-react';
 import { Link } from "react-router-dom";
 import { loginWithEmailPassword, loginWithGoogle } from "../../../auth";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../../App";
+import { handleLoginError } from "../../../auth/auth-error-handling";
+
 const LoginForm = () => {
     const {
         user,
@@ -18,6 +22,10 @@ const LoginForm = () => {
 
     const [formData, setFormData] = useState({
         email: '', password: '',
+    });
+
+    const [inputInvalidState, setInputInvalidState] = useState({
+        accountExist: false, email: false, password: false,
     });
 
     function handleInputChange(e) {
@@ -29,31 +37,43 @@ const LoginForm = () => {
 
     async function handleFormSubmit(e) {
         e.preventDefault();
-
         try {
             const userCredential = await loginWithEmailPassword(formData);
             setUser(userCredential.user);
+            setInputInvalidState(false);
         } catch (error) {
-            console.error('Authentication failed: ', error);
+            handleLoginError(error, setInputInvalidState);
         }
     }
-
-
 
     return (
         <Form className="form" onSubmit={handleFormSubmit}>
             <div className="form--title-container">
                 <h1 className='form__title cds--type-heading-04'>Log in to AlgoSculpt</h1>
             </div>
+
+            {inputInvalidState.accountExist && (
+                <div className="inline-notification">
+                    <InlineNotification
+                        kind="error"
+                        actions={<NotificationActionButton>Action</NotificationActionButton>}
+                        iconDescription="describes the close button"
+                        subtitle={'wrong e-mail and/or password'}
+                        title="Error:"
+                    />
+                </div>
+            )}
+
             <Stack gap={7}>
                 <TextInput
                     name="email"
                     id="form--email"
-                    invalidText="Invalid error message."
+                    invalidText="Invalid e-mail address. Please try again."
                     labelText="E-mail"
                     size="md"
                     required
                     onChange={handleInputChange}
+                    invalid={inputInvalidState.email}
                 />
                 <TextInput.PasswordInput
                     name="password"
@@ -63,6 +83,7 @@ const LoginForm = () => {
                     size="md"
                     required
                     onChange={handleInputChange}
+                    invalid={inputInvalidState.password}
                 />
                 <Button
                     className='form--submit'
