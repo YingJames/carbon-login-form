@@ -20,7 +20,7 @@ function App() {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setUser(user);
             setLoading(false);
-            if (user && !loading) {
+            if (user && !loading && window.location.pathname !== '/sign-up') {
                 navigate('/dashboard');
             }
         });

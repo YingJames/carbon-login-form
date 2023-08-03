@@ -1,5 +1,6 @@
 import {
     createUserWithEmailAndPassword,
+    updateProfile,
     GoogleAuthProvider,
     signInWithEmailAndPassword,
     signInWithPopup,
@@ -16,9 +17,8 @@ export const loginWithEmailPassword = (formData) => {
     const textFieldPassword = formData.password;
 
     try {
-         return signInWithEmailAndPassword(auth, textFieldEmail, textFieldPassword);
-    }
-    catch(error) {
+        return signInWithEmailAndPassword(auth, textFieldEmail, textFieldPassword);
+    } catch (error) {
         console.error(error);
     }
 };
@@ -27,9 +27,18 @@ export const signupWithEmailPassword = async (formData) => {
     const textFieldEmail = formData.email;
     const textFieldPassword = formData.password
     try {
-        return createUserWithEmailAndPassword(auth, textFieldEmail, textFieldPassword);
-    }
-    catch(error) {
+        createUserWithEmailAndPassword(auth, textFieldEmail, textFieldPassword)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: formData.displayName
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+    } catch (error) {
         console.log(error);
     }
 }
@@ -40,23 +49,23 @@ export const loginWithGoogle = async () => {
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
-/*
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-*/
+            /*
+                        const token = credential.accessToken;
+                        // The signed-in user info.
+                        const user = result.user;
+                        // IdP data available using getAdditionalUserInfo(result)
+                        // ...
+            */
         }).catch((error) => {
         // Handle Errors here.
-/*
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-*/
+        /*
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+        */
     });
 }
