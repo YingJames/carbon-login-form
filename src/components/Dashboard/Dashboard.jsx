@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../../App";
 import { logout } from "../../auth";
-import { Button } from "@carbon/react";
+import { Button, Content, Theme} from "@carbon/react";
+import Navbar from "../organisms/Navbar";
+import './_dashboard.scss'
 
 const Dashboard = () => {
     const {
@@ -12,8 +14,17 @@ const Dashboard = () => {
     console.log(user);
     return (
         <>
-            <h1>Dashboard, Hi {user.email}!</h1>
-            <Button onClick={logout} >Log out</Button>
+
+            <Theme theme={'g90'}>
+                <Navbar />
+            </Theme>
+
+
+            <Content className=".cds--content">
+                <h1>Dashboard, Hi {user.displayName}!</h1>
+                <Button onClick={logout}>Log out</Button>
+            </Content>
+
         </>
     );
 };
