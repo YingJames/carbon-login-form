@@ -26,8 +26,8 @@ const Navbar = () => (
                     onClick={onClickSideNavExpand}
                     isActive={isSideNavExpanded}
                 />
-                <HeaderName as={Link} to="/" prefix="IBM">
-                    Carbon Tutorial
+                <HeaderName as={Link} to="/" prefix="">
+                    Carbon Login Form App
                 </HeaderName>
                 <HeaderNavigation aria-label="Carbon Tutorial">
                     <HeaderMenuItem as={Link} to="/repos">Repositories</HeaderMenuItem>
