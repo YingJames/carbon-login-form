@@ -6,10 +6,7 @@ import Navbar from "../organisms/Navbar";
 import './_dashboard.scss'
 
 const Dashboard = () => {
-    const {
-        user,
-        setUser
-    } = useContext(CurrentUserContext);
+    const { user } = useContext(CurrentUserContext);
 
     return (
         <>

@@ -13,7 +13,7 @@ import {
     SideNavItems,
     HeaderSideNavItems,
 } from '@carbon/react';
-import { Switcher, Notification, UserAvatar } from '@carbon/react/icons';
+import { Notification, UserAvatar } from '@carbon/react/icons';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => (
@@ -47,14 +47,9 @@ const Navbar = () => (
                     <HeaderGlobalAction aria-label="Notifications" tooltipAlignment="center">
                         <Notification size={20} />
                     </HeaderGlobalAction>
-                    <HeaderGlobalAction aria-label="User Avatar" tooltipAlignment="end">
+                    <HeaderGlobalAction aria-label="Profile" tooltipAlignment="end">
                         <UserAvatar size={20} />
                     </HeaderGlobalAction>
-{/*
-                    <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">
-                        <Switcher size={20} />
-                    </HeaderGlobalAction>
-*/}
                 </HeaderGlobalBar>
             </Header>
         )}
