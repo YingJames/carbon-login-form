@@ -1,15 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../../App";
 import { logout } from "../../auth";
-import { Button, Checkbox, Content, Popover, PopoverContent, Theme } from "@carbon/react";
+import { Button, Content, Theme} from "@carbon/react";
 import Navbar from "../organisms/Navbar";
 import './_dashboard.scss'
-import RadioButton from "@carbon/react/es/components/RadioButton/RadioButton";
-import RadioButtonGroup from "@carbon/react/es/components/RadioButtonGroup/RadioButtonGroup";
 
 const Dashboard = () => {
     const { user } = useContext(CurrentUserContext);
-
 
     return (
         <>
@@ -17,6 +14,7 @@ const Dashboard = () => {
             <Theme theme={'g90'}>
                 <Navbar />
             </Theme>
+
 
             <Content className=".cds--content">
                 <h1>Dashboard, Hi {user.displayName}!</h1>
