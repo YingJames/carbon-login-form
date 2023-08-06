@@ -19,12 +19,46 @@ import { Notification, UserAvatar } from '@carbon/react/icons';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const Navbar = () => {
+const ProfilePopover = () => {
     const [isOpen, setIsOpen] = useState(false);
+    return (
+        <Popover
+            open={isOpen}
+            align='bottom-right'
+            isTabTip
+            onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                    setIsOpen(false);
+                }
+            }}
+            onRequestClose={() => setIsOpen(false)}
+        >
+
+            <HeaderGlobalAction
+                aria-label="Account"
+                tooltipAlignment="end"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <UserAvatar size={20} />
+            </HeaderGlobalAction>
+
+            <PopoverContent>
+                <div className="popover-example-content">
+                    <p className="popover-title">Available storage</p>
+                    <p className="popover-details">
+                        This server has 150 GB of block storage remaining.
+                    </p>
+                </div>
+            </PopoverContent>
+        </Popover>
+    );
+};
+const Navbar = () => {
+
 
     return (
         <HeaderContainer
-            render={({isSideNavExpanded, onClickSideNavExpand}) => (
+            render={({ isSideNavExpanded, onClickSideNavExpand }) => (
                 <Header aria-label="Carbon Tutorial">
                     <SkipToContent />
                     <HeaderMenuButton
@@ -53,28 +87,8 @@ const Navbar = () => {
                         <HeaderGlobalAction aria-label="Notifications" tooltipAlignment="center">
                             <Notification size={20} />
                         </HeaderGlobalAction>
-                        <HeaderGlobalAction 
-                            aria-label="Account" 
-                            tooltipAlignment="end"
-                            >
-                        <Popover 
-                            open={isOpen} 
-                            align='bottom-right'
-                            onClick={() => setIsOpen(!isOpen)}  
-                        >
-                            <div className="popover-trigger">
-                                <UserAvatar size={20} />
-                            </div>
-                            <PopoverContent>
-                                <div className="popover-example-content">
-                                <p className="popover-title">Available storage</p>
-                                <p className="popover-details">
-                                    This server has 150 GB of block storage remaining.
-                                </p>
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-                        </HeaderGlobalAction>
+
+                        <ProfilePopover />
                     </HeaderGlobalBar>
                 </Header>
             )}
