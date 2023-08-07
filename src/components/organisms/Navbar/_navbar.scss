@@ -1,4 +1,5 @@
-@use "@carbon/react/scss/colors";
+@use "@carbon/colors";
+@use "@carbon/layout";
 
 .navbar {
   background: #282c34;
@@ -9,4 +10,8 @@
 .cds--header__global .cds--popover-content {
   background-color: colors.$gray-80;
   color: white;
+}
+
+.popover-content {
+  padding: layout.$spacing-05;
 }
