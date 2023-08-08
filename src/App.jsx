@@ -21,6 +21,7 @@ function App() {
             setLoading(false);
             if (user && !loading && window.location.pathname !== '/sign-up') {
                 navigate('/dashboard');
+            if (user && !loading && window.location.pathname === '/log-in') {
             }
         });
 
