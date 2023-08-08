@@ -1,4 +1,3 @@
-import './_navbar.scss'
 import {
     Header,
     HeaderContainer,
@@ -12,16 +11,19 @@ import {
     SideNav,
     SideNavItems,
     HeaderSideNavItems,
-    PopoverContent, Button
+    PopoverContent, Button, Stack
 } from '@carbon/react';
 import { Notification, UserAvatar } from '@carbon/react/icons';
 import { Link } from 'react-router-dom';
 import CustomPopover from "../../molecules/CustomPopover/";
 import { logout } from "../../../auth";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../../App";
 import './_navbar.scss';
 
 
 const Navbar = () => {
+    const { user } = useContext(CurrentUserContext);
     return (
         <HeaderContainer
             render={({ isSideNavExpanded, onClickSideNavExpand }) => (
@@ -59,13 +61,13 @@ const Navbar = () => {
                                 <UserAvatar size={20} />
                             </HeaderGlobalAction>
                             <PopoverContent>
-                                <div className="popover-content">
-                                    <p className="popover-title">Available storage</p>
-                                    <p className="popover-details">
-                                        This server has 150 GB of block storage remaining.
-                                    </p>
+                                <Stack gap={6} className="popover-content">
+                                    <div>
+                                        <p className="popover-title">{user.displayName}</p>
+                                        <p className="popover-details">{user.email}</p>
+                                    </div>
                                     <Button onClick={logout}>Log out</Button>
-                                </div>
+                                </Stack>
                             </PopoverContent>
                         </CustomPopover>
                     </HeaderGlobalBar>
