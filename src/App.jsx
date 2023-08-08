@@ -19,9 +19,8 @@ function App() {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setUser(user);
             setLoading(false);
-            if (user && !loading && window.location.pathname !== '/sign-up') {
-                navigate('/dashboard');
             if (user && !loading && window.location.pathname === '/log-in') {
+                window.location.href = '/dashboard';
             }
         });
 
