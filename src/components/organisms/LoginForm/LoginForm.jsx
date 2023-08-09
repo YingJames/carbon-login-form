@@ -47,7 +47,7 @@ const LoginForm = () => {
                 <InlineNotification
                     kind="error"
                     actions={<NotificationActionButton>Action</NotificationActionButton>}
-                    iconDescription="describes the close button"
+                    statusIconDescription="error icon"
                     subtitle={'wrong e-mail and/or password'}
                     title="Error:"
                     onCloseButtonClick={null}

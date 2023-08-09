@@ -42,6 +42,7 @@ const SignUpForm = () => {
         return (
             <div className='inline-notification'>
                 <InlineNotification
+                    role="alert"
                     kind="success"
                     actions={<NotificationActionButton hideCloseButton>Action</NotificationActionButton>}
                     iconDescription="describes the close button"
@@ -66,7 +67,7 @@ const SignUpForm = () => {
             setShowSuccessNotif(true);
             setInputInvalidState(false);
             setTimeout(() => {
-                navigate('/dashboard');
+                window.location.href = '/dashboard';
             }, 5000)
         } catch (error) {
             handleSignUpError(error, setInputInvalidState, setInvalidMessage);
