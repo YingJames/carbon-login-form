@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import {
     getAuth,
-    connectAuthEmulator,
 } from 'firebase/auth';
 // require('dotenv').config();
 const firebaseConfig = {
