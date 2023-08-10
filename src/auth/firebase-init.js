@@ -4,13 +4,13 @@ import {
 } from 'firebase/auth';
 // require('dotenv').config();
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_APP_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+    apiKey: "AIzaSyDkppvd8-D2Ki4khnXbf-ZKUKwEokJwF7U",
+    authDomain: "fir-auth-9289c.firebaseapp.com",
+    projectId: "fir-auth-9289c",
+    storageBucket: "fir-auth-9289c.appspot.com",
+    messagingSenderId: "325163216477",
+    appId: "1:325163216477:web:1b17ba7bba5fad53fb27b4",
+    measurementId: "G-CBS263L79P"
 };
 
 function FirebaseInit() {
