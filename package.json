@@ -1,8 +1,8 @@
 {
   "name": "carbon-login-form",
   "version": "0.1.0",
-  "homepage": "./",
-  "private": true,
+  "homepage": "https://yingjames.github.io/carbon-login-form/",
+  "private": false,
   "dependencies": {
     "@carbon/react": "^1.34.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -16,7 +16,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "yarn build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "firebase-tools": "^12.4.7",
-    "gh-pages": "^5.0.0",
+    "gh-pages": "^6.0.0",
     "sass": "^1.64.1",
     "serve": "^14.2.0"
   }
