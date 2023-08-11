@@ -20,7 +20,7 @@ function App() {
             setUser(user);
             setLoading(false);
             if (user && !loading && window.location.pathname === '/log-in') {
-                window.location.href = '/dashboard';
+                window.location.pathname = '/dashboard';
             }
         });
 

@@ -67,7 +67,7 @@ const SignUpForm = () => {
             setShowSuccessNotif(true);
             setInputInvalidState(false);
             setTimeout(() => {
-                window.location.href = '/dashboard';
+                window.location.pathname = '/dashboard';
             }, 5000)
         } catch (error) {
             handleSignUpError(error, setInputInvalidState, setInvalidMessage);
